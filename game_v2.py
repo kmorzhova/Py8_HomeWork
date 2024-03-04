@@ -6,7 +6,7 @@ import numpy as np
 
 
 def random_predict(number: int = 1) -> int:
-    """Рандомно угадываем число
+    """Быстро угадываем число
 
     Args:
         number (int, optional): Загаданное число. Defaults to 1.
@@ -15,17 +15,20 @@ def random_predict(number: int = 1) -> int:
         int: Число попыток
     """
     count = 0
+    start_point = 0
+    end_point = 101
 
     while True:
         count += 1
-        predict_number = np.random.randint(start_point, end_point)  # предполагаемое число
+        predict_number = (start_point + end_point) // 2  # предполагаемое число
         if number == predict_number:
         
             break  # выход из цикла если угадали
-        elif number > predict_number: #если загаданное число больше предлагаемого числа
-          start_point=predict_number #сокращаем интервал поиска до значения предлагаемого числа
-        elif number < predict_number:#если загаданное число меньше предлагаемого числа
-          end_point=predict_number #сокращаем интервал поиска до значения предлагаемого числа
+        elif number > predict_number:
+            start_point=predict_number
+        elif number < predict_number:
+            end_point=predict_number
+
     return count
 
 
